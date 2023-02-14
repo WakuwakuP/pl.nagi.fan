@@ -6,29 +6,29 @@ docker pleroma
 
 ### caddy-docker-proxy
 
-既に導入済みの場合はスキップ
+既に導入済みの場合はスキップしてよい
 
 <https://github.com/WakuwakuP/dc-caddy-proxy>
 
-caddy-docker-proxy のdocker-composeを用意
+#### caddy-docker-proxy のdocker-composeを用意
 
 ```shell
 git clone https://github.com/WakuwakuP/dc-caddy-proxy.git
 ```
 
-caddy-docker-proxy に必要な docker network を作成
+#### caddy-docker-proxy に必要な docker network を作成
 
 ```
 docker network create --driver caddy
 ```
 
-caddy-docker-proxy ビルド
+#### caddy-docker-proxy ビルド
 
 ```
 docker-compose build
 ```
 
-caddy-docker-proxy 立ち上げ
+#### caddy-docker-proxy 立ち上げ
 
 ```
 docker-compose up -d
@@ -36,31 +36,31 @@ docker-compose up -d
 
 ### Pleroma起動
 
-構築用コードを取得
+#### 構築用コードを取得
 
 ```shell
 git clone --recursive https://github.com/WakuwakuP/pl.nagi.fan.git
 ```
 
-環境変数ファイルをサンプルからコピー
+#### 環境変数ファイルをサンプルからコピー
 
 ```shell
 cp .env.esample .env
 ```
 
-環境変数ファイルを環境にあわせて修正
+#### 環境変数ファイルを環境にあわせて修正
 
 ```shell
 vi .env
 ```
 
-必要な docker network を作成
+#### 必要な docker network を作成
 
 ```shell
 docker network create --driver bridge back-pleroma
 ```
 
-初回セットアップ
+#### 初回セットアップ
 
 ```shell
 ./pleroma.sh setup
