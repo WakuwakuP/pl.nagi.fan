@@ -11,9 +11,9 @@ services:
     container_name: pleroma-db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
-      interval: 10s
-      timeout: 5s
-      retries: 6
+      interval: 3s
+      timeout: 2s
+      retries: 40
     environment:
       POSTGRES_USER: pleroma
       POSTGRES_PASSWORD: ${PLEROMA_DB_PASSWORD}
