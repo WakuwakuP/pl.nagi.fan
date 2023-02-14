@@ -70,7 +70,7 @@ stop() {
 
 update_code() {
         git pull
-        git submodule update --init --recursive
+        git pull --recurse-submodules
 }
 
 update_build() {
