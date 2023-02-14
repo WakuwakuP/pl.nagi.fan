@@ -1,0 +1,7 @@
+data/postgres/
+data/pleroma/
+priv/
+_build/
+.env
+postgres/
+pgdump/*
