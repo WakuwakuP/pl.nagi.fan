@@ -1,34 +1,36 @@
-# my-pleroma
+# pl.nagi.fan
 
-docker pleroma
+Environment construction script of [pl.nagi.fan](https://pl.nagi.fan)
+
+emojis and themes, terms-of-service.html, etc. are in [pl.nagi.fan-custom](https://github.com/WakuwakuP/pl.nagi.fan-custom).
 
 ## install
 
 ### caddy-docker-proxy
 
-既に導入済みの場合はスキップしてよい
+Skip if you have already installed
 
 <https://github.com/WakuwakuP/dc-caddy-proxy>
 
-#### caddy-docker-proxy のdocker-composeを用意
+#### Get the code for caddy-docker-proxy
 
 ```shell
 git clone https://github.com/WakuwakuP/dc-caddy-proxy.git
 ```
 
-#### caddy-docker-proxy に必要な docker network を作成
+#### Create docker network required for caddy-docker-proxy
 
 ```
 docker network create --driver caddy
 ```
 
-#### caddy-docker-proxy ビルド
+#### Build caddy-docker-proxy
 
 ```
 docker-compose build
 ```
 
-#### caddy-docker-proxy 立ち上げ
+#### start caddy-docker-proxy
 
 ```
 docker-compose up -d
@@ -36,31 +38,31 @@ docker-compose up -d
 
 ### Pleroma起動
 
-#### 構築用コードを取得
+#### Get the code for pl.nagi.fan
 
 ```shell
 git clone --recursive https://github.com/WakuwakuP/pl.nagi.fan.git
 ```
 
-#### 環境変数ファイルをサンプルからコピー
+#### Copy the .env.example to .env
 
 ```shell
 cp .env.esample .env
 ```
 
-#### 環境変数ファイルを環境にあわせて修正
+#### Modify .env according to the environment
 
 ```shell
 vi .env
 ```
 
-#### 必要な docker network を作成
+#### Create the required docker network
 
 ```shell
 docker network create --driver bridge back-pleroma
 ```
 
-#### 初回セットアップ
+#### First setup
 
 ```shell
 ./pleroma.sh setup
@@ -68,27 +70,27 @@ docker network create --driver bridge back-pleroma
 
 ## Update
 
-### 基本的なアップデート
+### Basic update
 
 ```shell
 ./pleroma.sh update
 ```
 
-### 必要に応じて段階的に実行する
+### Gradually update as needed
 
-#### 最新の構築用コードを取得
+#### Get the latest building code
 
 ```shell
 ./pleroma.sh update-code
 ```
 
-#### イメージを更新
+#### Update docker image
 
 ```shell
 ./pleroma.sh update-image
 ```
 
-#### コンテナを新しく作り直してマイグレーション
+#### Create a new container and database migrate
 
 ```shell
 ./pleroma.sh update-container
