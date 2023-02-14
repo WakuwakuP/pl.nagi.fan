@@ -15,7 +15,6 @@ services:
       POSTGRES_DB: pleroma
     volumes:
       - ${PLEROMA_DB_DIR}:/var/lib/postgresql/data
-      - ./postgres:/docker-entrypoint-initdb.d
       - ./pgdump:/pgdump
     ports:
       - "5432:5432"
