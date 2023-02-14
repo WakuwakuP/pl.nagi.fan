@@ -12,6 +12,7 @@ Usage: $0 [command]
         initialize       - initialize database
         start            - start Pleroma
         stop             - stop Pleroma
+        update-code      - update script
         update-build     - update Pleroma images
         update-container - update Pleroma containers
         update           - update Pleroma images and containers
@@ -67,6 +68,11 @@ stop() {
         docker-compose stop
 }
 
+update_code() {
+        git pull
+        git submodule update --init --recursive
+}
+
 update_build() {
         docker-compose build db
         docker-compose build --build-arg NOW_DATETIME=$(date +%Y%m%d%H%M%S) --build-arg UID=$(id -u) --build-arg GID=$(id -g) web
@@ -106,6 +112,9 @@ case "$CMD" in
         stop)
                 stop
         ;;
+        update-code)
+                update_code
+        ;;
         update-build)
                 update_build
         ;;
@@ -113,6 +122,7 @@ case "$CMD" in
                 update_container
         ;;
         update)
+                update_code
                 update_build
                 update_container
         ;;
