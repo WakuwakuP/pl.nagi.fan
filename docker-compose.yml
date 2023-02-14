@@ -35,7 +35,7 @@ services:
       - '4000:4000'
     volumes:
       - ./data/pleroma/content/uploads:/var/lib/pleroma/uploads
-      - ./pleroma-custom/static:/var/lib/pleroma/static
+      - ./pl.nagi.fan-custom/static:/var/lib/pleroma/static
       - ./data/pleroma/config:/etc/pleroma:ro
     depends_on:
       - db
