@@ -49,22 +49,6 @@ services:
       caddy: ${PLEROMA_HOSTNAME}
       caddy.reverse_proxy: "web:4000"
 
-  soapbox:
-    build: docker/images/soapbox/.
-    restart: always
-    environment:
-      PLEROMA_HOSTNAME: ${PLEROMA_HOSTNAME}
-      SOAPBOX_HOSTNAME: ${SOAPBOX_HOSTNAME}
-    ports: 
-      - '4001:80'
-    networks:
-      - caddy
-    labels:
-      caddy: ${SOAPBOX_HOSTNAME}
-      caddy.handle_path: ^/(api|.well-known|nodeinfo|proxy|media|emoji|oauth|favicon.*)
-      caddy.handle_path.redir: "https://pl.nagi.fan{uri}"
-      caddy.reverse_proxy: "soapbox:4001"
-
 networks:
   caddy:
     external: true
