@@ -63,7 +63,7 @@ services:
       caddy: ${SOAPBOX_HOSTNAME}
       caddy.handle_path_0: ^(/api|.well-known|nodeinfo|proxy|media|emoji|oauth|favicon.*)
       caddy.handle_path_0.reverse_proxy: ^(/api|.well-known|nodeinfo|proxy|media|emoji|oauth|favicon.*) "web:4000"
-      caddy.handle_path_1: *
+      caddy.handle_path_1: "*"
       caddy.handle_path_1:0_rewrite: "* /"
       caddy.handle_path_1.1_reverse_proxy: "soapbox:4001"
 
