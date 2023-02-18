@@ -61,7 +61,8 @@ services:
       - caddy
     labels:
       caddy: ${SOAPBOX_HOSTNAME}
-      caddy.reverse_proxy: "soapbox:4001"
+      caddy.0_reverse_proxy: ^(/api|.well-known|nodeinfo|proxy|media|emoji|oauth|favicon.*) "web:4000"
+      caddy.1_reverse_proxy: "soapbox:4001"
 
 networks:
   caddy:
