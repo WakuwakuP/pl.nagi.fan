@@ -61,10 +61,9 @@ services:
       - caddy
     labels:
       caddy: ${SOAPBOX_HOSTNAME}
-      caddy.0_handle_path: ^/(api|.well-known|nodeinfo|proxy|media|emoji|oauth|favicon.*)
-      caddy.0_handle_path.redir: "https://pl.nagi.fan{uri}"
-      caddy.2_reverse_proxy: "soapbox:4001"
-      caddy.try_files: "{path} /index.html"
+      caddy.handle_path: ^/(api|.well-known|nodeinfo|proxy|media|emoji|oauth|favicon.*)
+      caddy.handle_path.redir: "https://pl.nagi.fan{uri}"
+      caddy.reverse_proxy: "soapbox:4001"
 
 networks:
   caddy:
