@@ -27,8 +27,7 @@ services:
       - back-pleroma
 
   web:
-    build: docker/otp/.
-    image: pleroma
+    build: docker/images/otp/.
     #container_name: pleroma_web
     restart: always
     environment:
@@ -49,6 +48,20 @@ services:
     labels:
       caddy: ${PLEROMA_HOSTNAME}
       caddy.reverse_proxy: "web:4000"
+
+  soapbox:
+    build: docker/images/soapbox/.
+    restart: always
+    environment:
+      PLEROMA_HOSTNAME: ${PLEROMA_HOSTNAME}
+      SOAPBOX_HOSTNAME: ${SOAPBOX_HOSTNAME}
+    ports: 
+      - '4001:80'
+    networks:
+      - caddy
+    labels:
+      caddy: ${SOAPBOX_HOSTNAME}
+      caddy.reverse_proxy: "soapbox:4001"
 
 networks:
   caddy:

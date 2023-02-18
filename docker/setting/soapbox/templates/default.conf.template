@@ -1,0 +1,22 @@
+server {
+  server_name ${SOAPBOX_HOSTNAME}
+
+  listen      80;
+
+  root        /opt/soapbox/static;
+
+  location / {
+    try_files $uri /index.html;
+  }
+
+  location = /index.html {
+    expires 30s;
+  }
+
+  location ~ ^/(api|.well-known|nodeinfo|proxy|media|emoji|oauth|favicon.*) {
+    #proxy_pass  $scheme://${PLEROMA_HOSTNAME}$request_uri;
+    proxy_redirect $scheme://${PLEROMA_HOSTNAME}$request_uri $scheme://${SOAPBOX_HOSTNAME}$request_uri;
+    proxy_set_header Host ${PLEROMA_HOSTNAME};
+    proxy_set_header X-Real-IP $remote_addr;
+  }
+}
