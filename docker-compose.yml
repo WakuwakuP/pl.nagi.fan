@@ -47,7 +47,21 @@ services:
       - back-pleroma
     labels:
       caddy: ${PLEROMA_HOSTNAME}
-      caddy.reverse_proxy: "web:4000"
+      caddy.1_@glitch-lily.path_regexp: "^/((500.html|embed.js|logo-cybre-glitch.gif|robots.txt|oops.gif|sw.js|background-cybre.png|oops.png|web-push-icon_expand.png|badge.png|web-push-icon_favourite.png|clock.js|inert.css|riot-glitch.png|web-push-icon_reblog.png)|(web|assets|emoji|ocr|sounds|avatars|packs).*)"
+      caddy.2_handle: "@glitch-lily"
+      caddy.2_handle.reverse_proxy: "glitch-lily:80"
+      caddy.3_handle.reverse_proxy: "web:4000"
+
+  glitch-lily:
+    image: nginx:latest
+    container_name: glitch-lily
+    restart: always
+    tty: false
+    volumes:
+      - ./docker/setting/glitch-lily/templates:/etc/nginx/templates:ro
+      - ./pl.nagi.fan-custom/static/frontends/glitch-lily/servant:/var/www/html:ro
+    networks:
+      - caddy
 
 networks:
   caddy:
