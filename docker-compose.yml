@@ -37,7 +37,7 @@ services:
     volumes:
       - ./data/pleroma/content/uploads:/var/lib/pleroma/uploads
       - ./pl.nagi.fan-custom/static:/var/lib/pleroma/static
-      - ./data/pleroma/config:/etc/pleroma:ro
+      - ./data/pleroma/config:/etc/pleroma:rw
     depends_on:
       db:
         condition: service_healthy

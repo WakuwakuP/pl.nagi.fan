@@ -24,6 +24,7 @@ FROM alpine:latest
 
 RUN apk -U upgrade \
     && apk add --no-cache \
+    --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     ncurses \
     file-dev \
     imagemagick \
@@ -40,6 +41,8 @@ RUN addgroup -g ${GID} pleroma \
     && adduser --system --shell /bin/false --home /opt/pleroma -D -G pleroma -u ${UID} pleroma
 
 COPY --from=builder --chown=pleroma:root /tmp/pleroma/release/ /opt/pleroma
+
+RUN cat /opt/pleroma/OTP_VERSION
 
 RUN mkdir --parents /var/lib/pleroma /etc/pleroma \
     && chown -R pleroma /var/lib/pleroma /etc/pleroma
